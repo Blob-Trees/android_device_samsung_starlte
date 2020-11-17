@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (C) 2018-2019 The LineageOS Project
+# Copyright (C) 2018-2020 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,22 +15,54 @@
 # limitations under the License.
 #
 
-# If we're being sourced by the common script that we called,
-# stop right here. No need to go down the rabbit hole.
-if [ "${BASH_SOURCE[0]}" != "${0}" ]; then
-    return
+set -e
+
+VENDOR=samsung
+DEVICE=starlte
+
+# Load extract_utils and do some sanity checks
+MY_DIR="${BASH_SOURCE%/*}"
+if [[ ! -d "${MY_DIR}" ]]; then MY_DIR="${PWD}"; fi
+
+LINEAGE_ROOT="${MY_DIR}"/../../..
+
+HELPER="${LINEAGE_ROOT}/vendor/lineage/build/tools/extract_utils.sh"
+if [ ! -f "${HELPER}" ]; then
+    echo "Unable to find helper script at ${HELPER}"
+    exit 1
+fi
+source "${HELPER}"
+
+SECTION=
+KANG=
+
+while [ "${#}" -gt 0 ]; do
+    case "${1}" in
+        -n | --no-cleanup )
+                CLEAN_VENDOR=false
+                ;;
+        -k | --kang )
+                KANG="--kang"
+                ;;
+        -s | --section )
+                SECTION="${2}"; shift
+                CLEAN_VENDOR=false
+                ;;
+        * )
+                SRC="${1}"
+                ;;
+    esac
+    shift
+done
+
+if [ -z "${SRC}" ]; then
+    SRC="adb"
 fi
 
-set -e
-LINEAGE_ROOT="$MY_DIR"/../../..
+# Initialize the helper
+setup_vendor "${DEVICE}" "${VENDOR}" "${LINEAGE_ROOT}" true "${CLEAN_VENDOR}"
 
-# Required!
-export DEVICE=starlte
-export DEVICE_COMMON=universal9810-common
-export VENDOR=samsung
+extract "${MY_DIR}/proprietary-files.txt" "${SRC}" \
+        "${KANG}" --section "${SECTION}"
 
-export DEVICE_BRINGUP_YEAR=2018
-
-"./../../${VENDOR}/${DEVICE_COMMON}/extract-files.sh" "$@"
-
-BLOB_ROOT="$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary
+"${MY_DIR}/setup-makefiles.sh"
