@@ -24,6 +24,8 @@ TARGET_KERNEL_CONFIG := exynos9810-starlte_defconfig
 
 # Partitions
 BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 4561305600
+BOARD_VENDORIMAGE_PARTITION_SIZE := 681574400
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 
 # Inherit common board flags
 include device/samsung/universal9810-common/BoardConfigCommon.mk
