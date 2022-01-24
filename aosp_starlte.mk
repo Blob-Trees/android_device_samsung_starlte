@@ -35,4 +35,4 @@ PRODUCT_MANUFACTURER := samsung
 
 PRODUCT_GMS_CLIENTID_BASE := android-samsung
 
-WITH_GAPPS = true
+WITH_GAPPS := true
