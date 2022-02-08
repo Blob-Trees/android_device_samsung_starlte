@@ -18,3 +18,12 @@
 
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.sf.lcd_density=560
+
+# Elixir Stuffs
+PRODUCT_PRODUCT_PROPERTIES += \
+    org.elixir.device.name=Samsung Galaxy S9 \
+    ro.elixir.device.name=Samsung Galaxy S9 \
+    ro.elixir.device=starlte \
+    ro.elixir.maintainer=Cyder \
+    ro.elixir.maintainer.username=Cyderxxv \
+    ro.elixir.group.url=t.me/Elixir_Discussion
