@@ -25,7 +25,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit some common DerpFest stuff.
 $(call inherit-product, vendor/derp/config/common_full_phone.mk)
-DERP_BUILDTYPE := OSS_TEST
+DERP_BUILDTYPE := OSS-TEST-2
+WITH_GMS := false
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := starlte
