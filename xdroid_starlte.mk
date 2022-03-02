@@ -30,7 +30,7 @@ XDROID_MAINTAINER := thenist
 TARGET_SUPPORTS_GOOGLE_RECORDER := false
 TARGET_INCLUDE_STOCK_ARCORE := false
 TARGET_INCLUDE_LIVE_WALLPAPERS := false
-TARGET_SUPPORTS_QUICK_TAP := true
+TARGET_SUPPORTS_QUICK_TAP := false
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := starlte
