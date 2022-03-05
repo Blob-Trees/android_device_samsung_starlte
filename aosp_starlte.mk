@@ -25,6 +25,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit some common Project Arcana stuff.
 $(call inherit-product, vendor/aosp/common.mk)
+TARGET_FACE_UNLOCK_SUPPORTED := true
 ARCANA_DEVICE := starlte
 ARCANA_MAINTAINER := CyderXXV
 TARGET_BOOT_ANIMATION_RES := 1080
