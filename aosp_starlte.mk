@@ -23,8 +23,16 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 $(call inherit-product, device/samsung/starlte/device.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit some common Lineage stuff.
-$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
+# Inherit some common Project Arcana stuff.
+$(call inherit-product, vendor/aosp/common.mk)
+ARCANA_DEVICE := starlte
+ARCANA_MAINTAINER := CyderXXV
+TARGET_BOOT_ANIMATION_RES := 1080
+TARGET_BUILD_GRAPHENEOS_CAMERA := true
+TARGET_SUPPORTS_BLUR := false
+USE_PIXEL_CHARGER_IMAGES := true
+WITH_GAPPS := true
+PREBUILT_LAWNCHAIR := true
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := starlte
